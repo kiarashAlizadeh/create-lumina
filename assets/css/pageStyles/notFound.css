@@ -1,0 +1,80 @@
+/* CSS for NotFound Page */
+main {
+  margin-right: 18px;
+  margin-left: 18px;
+}
+
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 65vh;
+  padding: 2rem;
+  background-color: #f4f4f9;
+  max-width: 450px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 40px;
+  border-radius: 25px;
+}
+
+.not-found-message {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff4d4d;
+}
+
+.not-found-title {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+  color: #222;
+}
+
+.not-found-description {
+  font-size: 1.2rem;
+  margin: 1rem 0 1.5rem;
+  color: #555;
+}
+
+.back-home {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-home:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.back-home:active {
+  transform: translateY(0);
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  .not-found-page {
+    padding: 1.5rem;
+  }
+
+  .not-found-title {
+    font-size: 2rem;
+  }
+
+  .not-found-description {
+    font-size: 1rem;
+  }
+
+  .back-home {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}

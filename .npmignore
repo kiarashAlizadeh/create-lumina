@@ -1,0 +1,39 @@
+# Dependencies
+node_modules
+package-lock.json
+
+# Testing
+test
+coverage
+*.test.js
+*.spec.js
+
+# Development files
+.git
+.gitignore
+.env
+.env.*
+.npmrc
+.eslintrc
+.prettier*
+.vscode
+.idea
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Build directories
+dist
+build
+.cache
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
