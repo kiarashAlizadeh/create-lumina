@@ -41,7 +41,7 @@ const packageJson = {
   author: 'Kiarash Alizadeh',
   license: 'MIT',
   dependencies: {
-    'create-lumina': '^1.2.1',
+    'create-lumina': 'latest',
     'cookie-parser': '^1.4.7',
     cors: '^2.8.5',
     dotenv: '^16.4.7',
