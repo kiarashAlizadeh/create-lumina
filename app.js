@@ -38,28 +38,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Function to load CSS file dynamically
-  function loadCssFile(cssFile) {
-    if (cssFile) {
-      const cssPath = `./assets/css/pageStyles/${cssFile}.css`;
+  function loadCssFile(cssFiles) {
+    // Remove all existing dynamically added CSS files
+    document
+      .querySelectorAll('link[rel="stylesheet"].dynamic-style')
+      .forEach((link) => link.remove());
 
-      // Remove the Old CSS file if it exists
-      const existingStyle = document.getElementById('dynamic-style');
-      if (existingStyle) {
-        existingStyle.parentNode.removeChild(existingStyle);
-      }
+    if (Array.isArray(cssFiles) && cssFiles.length > 0) {
+      cssFiles.forEach((cssFile) => {
+        const cssPath = `./assets/css/pageStyles/${cssFile}.css`;
 
-      // add css file for req page
-      const style = document.createElement('link');
-      style.id = 'dynamic-style';
-      style.rel = 'stylesheet';
-      style.href = cssPath;
-      document.head.appendChild(style);
-    } else {
-      // Remove the Old CSS file if it exists
-      const existingStyle = document.getElementById('dynamic-style');
-      if (existingStyle) {
-        existingStyle.parentNode.removeChild(existingStyle);
-      }
+        // Create and append new CSS file
+        const style = document.createElement('link');
+        style.className = 'dynamic-style'; // Use class instead of ID to support multiple styles
+        style.rel = 'stylesheet';
+        style.href = cssPath;
+        document.head.appendChild(style);
+      });
     }
   }
 

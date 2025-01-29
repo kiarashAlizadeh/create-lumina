@@ -1,32 +1,55 @@
 {
   "name": "create-lumina",
-  "version": "1.0.1",
+  "version": "1.2.1",
   "description": "Lumina is an fullStack SPA maker",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "concurrently \"nodemon server.js\" \"npx @tailwindcss/cli -i ./assets/css/index.css -o ./assets/css/tailwindOutput.css --watch\""
+    "start": "concurrently \"nodemon server.js\" \"npx @tailwindcss/cli -i ./assets/css/index.css -o ./assets/css/tailwindOutput.css --watch\" \"sass --watch assets/css/sass:assets/css/pageStyles\""
   },
-  "bin": "bin/index.js",
+  "bin": {
+    "create-lumina": "bin/index.js"
+  },
+  "homepage": "https://github.com/kiarashAlizadeh/create-lumina",
   "repository": {
     "type": "git",
-    "url": "create-lumina"
+    "url": "git+https://github.com/kiarashAlizadeh/create-lumina.git"
   },
+  "keywords": [
+    "frontend",
+    "backend",
+    "dev-server",
+    "fullstack",
+    "lumina"
+  ],
   "type": "module",
   "author": "Kiarash Alizadeh",
   "license": "MIT",
+  "files": [
+    "api",
+    "assets",
+    "components",
+    "app.js",
+    "index.html",
+    "server.js",
+    "LICENSE",
+    "lumina.config.js",
+    "README.md",
+    "routes.js"
+  ],
   "dependencies": {
-    "@tailwindcss/cli": "^4.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "fs": "^0.0.1-security",
     "mongoose": "^8.9.5",
-    "nodemon": "^3.1.9",
-    "path": "^0.12.7",
-    "tailwindcss": "^4.0.0"
+    "path": "^0.12.7"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "@tailwindcss/cli": "^4.0.0",
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9",
+    "sass": "^1.83.4",
+    "tailwindcss": "^4.0.0"
   }
 }

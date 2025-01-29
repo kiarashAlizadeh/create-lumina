@@ -521,9 +521,6 @@
   }
 }
 @layer utilities {
-  .relative {
-    position: relative;
-  }
   .static {
     position: static;
   }
@@ -544,9 +541,6 @@
     @media (width >= 96rem) {
       max-width: 96rem;
     }
-  }
-  .block {
-    display: block;
   }
 }
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');

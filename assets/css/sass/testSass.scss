@@ -1,0 +1,93 @@
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  // Primary button style
+  &.primary {
+    background-color: #3498db;
+    color: white;
+    border: 2px solid #2980b9;
+
+    &:hover {
+      background-color: #2980b9;
+      box-shadow: 0 4px 10px rgba(41, 128, 185, 0.3);
+    }
+  }
+
+  // Secondary button style
+  &.secondary {
+    background-color: #2ecc71;
+    color: white;
+    border: 2px solid #27ae60;
+
+    &:hover {
+      background-color: #27ae60;
+      box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+    }
+  }
+
+  // Danger button style
+  &.danger {
+    background-color: #e74c3c;
+    color: white;
+    border: 2px solid #c0392b;
+
+    &:hover {
+      background-color: #c0392b;
+      box-shadow: 0 4px 10px rgba(192, 57, 43, 0.3);
+    }
+  }
+
+  // Disabled button style
+  &.disabled {
+    background-color: #bdc3c7;
+    color: #7f8c8d;
+    border: 2px solid #95a5a6;
+    cursor: not-allowed;
+  }
+
+  // Button with icon
+  &.icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    i {
+      font-size: 20px;
+    }
+  }
+
+  // Button sizes
+  &.small {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  &.large {
+    padding: 16px 32px;
+    font-size: 18px;
+  }
+
+  // Button with animation
+  &.pulse {
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
