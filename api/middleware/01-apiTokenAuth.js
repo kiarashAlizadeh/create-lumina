@@ -14,6 +14,8 @@ export const apiTokenAuth = () => (req, res, next) => {
 
   // Check if token exists
   if (!apiKey) {
+    console.log('UnAuthorized access!');
+
     return res.status(401).json({
       error: 'API token is required',
       code: 'TOKEN_REQUIRED',
@@ -25,6 +27,8 @@ export const apiTokenAuth = () => (req, res, next) => {
 
   // Check if token is valid
   if (!tokenDetails) {
+    console.log('UnAuthorized access!');
+
     return res.status(401).json({
       error: 'Invalid API token',
       code: 'INVALID_TOKEN',
@@ -33,6 +37,8 @@ export const apiTokenAuth = () => (req, res, next) => {
 
   // Check if token is active
   if (!tokenDetails.isActive) {
+    console.log('UnAuthorized access!');
+
     return res.status(403).json({
       error: 'API token is inactive',
       code: 'INACTIVE_TOKEN',
@@ -42,6 +48,8 @@ export const apiTokenAuth = () => (req, res, next) => {
   // Rate limiting check
   const currentRequests = tokenRequests.get(apiKey) || 0;
   if (currentRequests >= tokenDetails.rateLimit) {
+    console.log('UnAuthorized access!');
+
     return res.status(429).json({
       error: 'Rate limit exceeded',
       code: 'RATE_LIMIT_EXCEEDED',
@@ -54,6 +62,8 @@ export const apiTokenAuth = () => (req, res, next) => {
   // Check permission for specific endpoints (optional)
   const requestedOperation = getOperationType(req.method);
   if (!tokenDetails.permissions.includes(requestedOperation)) {
+    console.log('UnAuthorized access!');
+
     return res.status(403).json({
       error: 'Insufficient permissions',
       code: 'INSUFFICIENT_PERMISSIONS',
@@ -87,6 +97,8 @@ function getOperationType(method) {
 // Optional: Middleware for specific permission checks
 export const requireApiPermission = (permission) => (req, res, next) => {
   if (!req.apiToken) {
+    console.log('UnAuthorized access!');
+
     return res.status(401).json({
       error: 'API token authentication required',
       code: 'TOKEN_REQUIRED',
@@ -94,6 +106,8 @@ export const requireApiPermission = (permission) => (req, res, next) => {
   }
 
   if (!req.apiToken.permissions.includes(permission)) {
+    console.log('UnAuthorized access!');
+
     return res.status(403).json({
       error: `Permission '${permission}' required`,
       code: 'PERMISSION_REQUIRED',
