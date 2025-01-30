@@ -9,6 +9,11 @@ setInterval(() => {
 }, 3600000); // 1 hour
 
 export const apiTokenAuth = () => (req, res, next) => {
+  // Check if the request path starts with /api
+  if (!req.path.startsWith('/api')) {
+    return next(); // Skip this middleware for other paths
+  }
+
   // Get token from header
   const apiKey = req.header('X-API-Token') || req.query.api_token;
 
