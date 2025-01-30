@@ -5,7 +5,9 @@ import { port, DBConnect } from './lumina.config.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import fs from 'fs';
+import { loadMiddlewares } from './api/middleware/index.js';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 // Get the directory path of the current file
@@ -29,6 +31,9 @@ app.use(
 app.use(express.json());
 // Middleware to parse cookies from incoming requests
 app.use(cookieParser());
+
+// Load all middlewares dynamically
+await loadMiddlewares(app);
 
 // Serve static files from the root directory (frontend part)
 app.use(express.static(__dirname)); // Serve static files from the root of the project
