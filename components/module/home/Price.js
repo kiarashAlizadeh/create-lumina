@@ -1,37 +1,37 @@
 function Price() {
   const plans = [
     {
-      name: "Starter",
-      price: "$19",
-      priceSuffix: "/month",
-      features: ["5 Projects", "Basic Components", "Community Support"],
-      buttonText: "Choose Plan",
+      name: 'Starter',
+      price: '$19',
+      priceSuffix: '/month',
+      features: ['5 Projects', 'Basic Components', 'Community Support'],
+      buttonText: 'Choose Plan',
     },
     {
-      name: "Pro",
-      price: "$49",
-      priceSuffix: "/month",
+      name: 'Pro',
+      price: '$49',
+      priceSuffix: '/month',
       features: [
-        "Unlimited Projects",
-        "Advanced Components",
-        "Priority Support",
-        "Custom Themes",
+        'Unlimited Projects',
+        'Advanced Components',
+        'Priority Support',
+        'Custom Themes',
       ],
-      buttonText: "Choose Plan",
+      buttonText: 'Choose Plan',
     },
     {
-      name: "Enterprise",
-      price: "Custom",
-      priceSuffix: "",
+      name: 'Enterprise',
+      price: 'Custom',
+      priceSuffix: '',
       features: [
-        "All Pro Features",
-        "Dedicated Support",
-        "Custom Development",
-        "SLA",
+        'All Pro Features',
+        'Dedicated Support',
+        'Custom Development',
+        'SLA',
       ],
-      buttonText: "Contact Us",
+      buttonText: 'Contact Us',
     },
-  ]
+  ];
 
   return `
 <section class="mb-16">
@@ -62,7 +62,7 @@ function Price() {
                 ✅ ${feature}
             </li>`
               )
-              .join("")}
+              .join('')}
         </ul>
         <a
             href="#"
@@ -72,10 +72,10 @@ function Price() {
         </a>
         </div>`
       )
-      .join("")}
+      .join('')}
     </div>
 </section>
-    `
+    `;
 }
 
-export default Price
+export default Price;
