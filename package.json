@@ -1,6 +1,6 @@
 {
   "name": "create-lumina",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Lumina is an fullStack SPA maker",
   "main": "server.js",
   "scripts": {
