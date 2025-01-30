@@ -11,8 +11,8 @@ async function TestPage() {
 
   // return page's html
   return `
-<div>
-  test Id: ${id}
+<div class="text-center text-5xl font-bold ">
+  Page Id is: <span class="text-amber-500">${id}</span>
 </div>
 `;
 }

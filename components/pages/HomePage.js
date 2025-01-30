@@ -1,3 +1,7 @@
+import Comments from '../module/home/Comments.js';
+import FAQ from '../module/home/FAQ.js';
+import Price from '../module/home/Price.js';
+
 // Component for Home Page
 async function HomePage() {
   // set page title
@@ -40,32 +44,45 @@ async function HomePage() {
 
   // return page's html
   return `
-    <div class="home-page">
-      <header class="home-header">
-        <h1>Welcome to LUMINA</h1>
-        <p>Your complete full-stack solution for building powerful SPAs</p>
-      </header>
+     <div class="container mx-auto px-4 py-16">
+        <section class="text-center mb-16">
+            <h1 class="text-5xl font-bold text-gray-800 mb-4">Create Stunning SPAs with LUMINA</h1>
+            <p class="text-xl text-gray-600 mb-8">The next-generation SPA maker for modern web applications</p>
+            <a href="#" class="bg-indigo-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-indigo-700 transition">Get Started</a>
+        </section>
 
-      <section class="features-section">
-        <h2 class="features-title">Why Choose LUMINA?</h2>
-        <div class="features-list">
-          ${features
-            .map(
-              (feature) => `
-            <div class="feature-item">
-              <h3>${feature.title}</h3>
-              <p>${feature.description}</p>
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            ${features
+              .map(
+                (feature) => `
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">${feature.title}</h3>
+                <p class="text-gray-600">${feature.description}</p>
             </div>
           `
-            )
-            .join('')}
-        </div>
-      </section>
+              )
+              .join('')}
+        </section>
 
-      <section class="cta-section">
-        <h2 class="cta-title">Get Started with LUMINA Today</h2>
-        <a href="/signup" class="cta-button">Start Building</a>
-      </section>
+        <section class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">See LUMINA in Action</h2>
+            <div class="bg-gray-200 h-96 rounded-lg flex items-center justify-center">
+                <p class="text-gray-500 text-lg">Video Placeholder</p>
+            </div>
+        </section>
+
+        <!-- using home page components -->
+         ${Comments()}
+
+         ${Price()}
+
+         ${FAQ()}
+
+        <section class="text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Ready to Illuminate Your Web Projects?</h2>
+            <p class="text-xl text-gray-600 mb-8">Join thousands of developers who trust LUMINA for their SPA needs</p>
+            <a href="https://github.com/kiarashAlizadeh/create-lumina" class="bg-indigo-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-indigo-700 transition">Start Coding</a>
+        </section>
     </div>
   `;
 }

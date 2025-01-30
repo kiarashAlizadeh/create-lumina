@@ -4,7 +4,7 @@ async function Footer() {
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-section">
-        <img src="../../assets/images/lumina-icon.webp" class="lumina-icon" alt="lumina" />
+        <img src="../../assets/images/lumina-icon.webp" class="lumina-icon mx-auto mb-3" alt="lumina" />
           <h3 class="footer-title">LUMINA</h3>
           <p class="footer-description">Bringing light to your projects with our expertise.</p>
         </div>
@@ -12,7 +12,7 @@ async function Footer() {
           <h4>Quick Links</h4>
           <ul class="footer-links">
             <li><a href="/">Home</a></li>
-            <li><a href="/test#7775">Test Page</a></li>
+            <li><a href="/test#kiarash_alizadeh">Test Page</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/services">Services</a></li>
             <li><a href="/contact">Contact</a></li>

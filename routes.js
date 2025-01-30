@@ -1,6 +1,6 @@
 // Define routes
 const mainRoutes = [
-  { path: '/', component: 'HomePage', css: ['home'] },
+  { path: '/', component: 'HomePage' },
   { path: '/test', component: 'TestPage', css: ['test', 'testSass'] },
 ];
 

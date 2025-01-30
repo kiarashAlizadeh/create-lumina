@@ -14,25 +14,18 @@
 }
 
 /* Css Reset */
-* {
+/* * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-}
+} */
 
 body {
+  @apply bg-gradient-to-br from-purple-100 to-indigo-200;
+
   font-size: 16px;
-  background: linear-gradient(
-    243deg,
-    rgb(5, 134, 148) 5%,
-    rgb(33, 39, 129) 23%,
-    rgb(53, 53, 186) 52%,
-    rgb(15, 88, 144) 75%,
-    rgb(11, 86, 132) 91%
-  );
   background-size: cover;
   background-repeat: no-repeat;
-  color: var(--text-main);
   font-family: Poppins;
 }
 
