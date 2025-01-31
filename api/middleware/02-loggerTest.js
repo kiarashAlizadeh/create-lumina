@@ -1,4 +1,5 @@
 export const requestLogger = () => (req, res, next) => {
-  console.log('< -- middleware logger 02 -- >');
+  // unComment to see in action
+  console.log('< -- middleware logger 01 -- >');
   next();
 };
