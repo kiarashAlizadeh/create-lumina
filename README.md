@@ -36,7 +36,7 @@ Happy coding with Lumina! 🎉
 Run the following command to start the development server:
 
 ```bash
-npm start
+npm run dev
 ```
 
 Your Lumina app will be available at:
@@ -51,6 +51,7 @@ http://localhost:3000/
   - [Components](#components)
   - [Nested Components](#nested-components)
   - [Routing](#routing)
+  - [Handling Undefined Routes](#handling-undefined-routes)
   - [Layouts](#layouts)
   - [Loading Screen](#loading-screen)
   - [Styling](#styling)
@@ -62,6 +63,7 @@ http://localhost:3000/
   - [Models](#models)
   - [Middlewares](#middlewares)
   - [Environment Variables](#environment-variables)
+- [Deploy on Server](#deploy-on-server)
 
 ## Frontend Development
 
@@ -118,7 +120,7 @@ async function TestPage() {
 
   return `
     <div class="text-center text-5xl font-bold mb-10">
-      Page Id is: <span class="text-amber-500">${id}</span>
+     hello world!
     </div>
   `;
 }
@@ -217,7 +219,14 @@ Route configuration:
 - `path`: URL path after domain
 - `component`: Component name (must exist in components/pages)
 - `css`: Optional array of CSS files to link
-- 404 page shows for undefined routes
+
+### Handling Undefined Routes
+
+Lumina automatically handles undefined routes and displays the 404 page. If a user navigates to a non-existent route, they will be redirected to the designated `NotFoundPage`.
+
+You can customize the 404 page component and styles to match your branding by modifying `NotFoundPage` and its associated styles in `css/notFound.css`.
+
+The 404 page ensures a better user experience by informing users that the requested page does not exist, preventing confusion and improving navigation.
 
 ### Layouts
 
@@ -261,7 +270,7 @@ Lumina supports multiple styling approaches:
 
 3. **Sass**: Write in `assets/sass/` - automatically compiled to CSS
 
-4. **Tailwind CSS**: Pre-configured and ready to use:
+4. **Tailwind CSS V4.0**: Pre-configured and ready to use:
 
 ```html
 <div class="bg-amber-500">Lumina is using TailwindCSS!</div>
@@ -333,18 +342,20 @@ Lumina uses MongoDB with Mongoose by default. Database connection is configured 
 
 ```javascript
 async function DBConnect() {
-  const DATABASE_URL = process.env.DATABASE_URL;
-  if (!DATABASE_URL) {
-    console.error('DATABASE_URL is not defined in .env file');
-    return;
+  try {
+    const DATABASE_URL = process.env.DATABASE_URL;
+    if (!DATABASE_URL) {
+      console.error('DATABASE_URL is not defined in .env file');
+      return;
+    }
+
+    // Connecting to the database
+    await mongoose.connect(DATABASE_URL);
+
+    console.log('Successfully connected to the Database!');
+  } catch (error) {
+    console.error('Failed to connect to the Database:', error);
   }
-
-  mongoose.connect(DATABASE_URL);
-
-  const db = mongoose.connection;
-
-  db.on('error', (error) => console.error(error));
-  db.once('open', () => console.log('successfully connected to the DataBase!'));
 }
 ```
 
@@ -539,11 +550,55 @@ DATABASE_URL="mongodb://127.0.0.1:27017/lumina"
 The `.env` file should be in the project root and is used for:
 
 - Database connection strings
+- Server Port
 - API keys
 - Sensitive configuration
 - Environment-specific settings
 
 Never commit the `.env` file to version control.
+
+**Configuring the Port**  
+By default, Lumina runs on port `3000`. You can change this by setting the `PORT` variable in your `.env` file or modifying the `lumina.config.js` file:
+
+```javascript
+// lumina port
+const port = process.env.PORT || 3000;
+```
+
+This allows you to customize the server port based on your environment.
+
+### Deploy on Server
+
+To deploy the application on a server where Node.js is already installed, follow these steps:
+
+1. **Upload the project files** to the server. You can use FTP, SCP, or any other method.
+2. **Navigate to the project directory** in the terminal:
+
+   ```bash
+   cd /path/to/your/project
+   ```
+
+3. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+4. **Start the application**:
+
+   ```bash
+   npm start
+   ```
+
+   The application will run on port `3000` by default or the port defined in the `.env` file (e.g., `PORT=3001`).
+
+5. **Connect to a real database** (if applicable) by setting `DATABASE_URL` in the `.env` file.
+
+6. **Access the application**:
+   - If no domain is set, open `http://your-server-ip:3000` in a browser.
+   - If a domain is connected to the server, simply type your domain in the browser.
+
+Your application is now live! 🚀
 
 ---
 

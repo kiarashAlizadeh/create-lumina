@@ -34,8 +34,8 @@ const packageJson = {
   description: 'Lumina is an fullStack SPA maker',
   main: 'index.js',
   scripts: {
-    start:
-      'concurrently "nodemon server.js" "npx @tailwindcss/cli -i ./assets/css/index.css -o ./assets/css/tailwindOutput.css --watch"',
+    start: 'node server.js',
+    dev: 'concurrently "nodemon server.js" "npx @tailwindcss/cli -i ./assets/css/index.css -o ./assets/css/tailwindOutput.css --watch"',
   },
   type: 'module',
   author: 'Kiarash Alizadeh',
@@ -127,7 +127,8 @@ async function copyTemplateFiles() {
     }
 
     // Create .env file
-    const envContent = 'DATABASE_URL="mongodb://127.0.0.1:27017/lumina"\n';
+    const envContent =
+      'PORT="3000"\nDATABASE_URL="mongodb://127.0.0.1:27017/lumina"\n';
     fs.writeFileSync(path.join(targetDir, '.env'), envContent);
 
     return true;
@@ -154,7 +155,7 @@ try {
   console.log('\n✨ Success! Your Lumina project is ready!');
   console.log(`\n🏁 Created ${projectName} at ${targetDir}`);
   console.log('\nInside that directory, you can run these commands:');
-  console.log('\n✅  npm start');
+  console.log('\n✅  npm run dev');
   console.log('\nStarts the development server.');
   console.log('\nHappy coding with Lumina! 🎉');
 } catch (error) {
