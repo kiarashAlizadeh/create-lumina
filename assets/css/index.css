@@ -53,7 +53,7 @@ a:hover {
   align-items: center;
   height: 100vh;
 }
-.loaderContainer .loader {
+.loaderContainer .loaderChild {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,11 +63,61 @@ a:hover {
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.258);
 }
-.loaderContainer .loader .spinner {
-  background-size: cover;
-  width: 100px;
-  height: 100px;
-  animation: spin 1s linear infinite;
+
+.loaderContainer .loaderChild h1 {
+  font-weight: 900;
+  color: #9f90ff;
+  font-size: 36px;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite;
+}
+.loader::before,
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  animation: prixClipFix 2s linear infinite;
+}
+.loader::after {
+  border-color: #afa4f9;
+  animation: prixClipFix 2s linear infinite, rotate 0.5s linear infinite reverse;
+  inset: 6px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
 }
 
 @keyframes spin {

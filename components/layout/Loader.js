@@ -2,12 +2,11 @@
 async function Loader() {
   return `
 <div class="loaderContainer">
-  <div class="loader">
+  <div class="loaderChild">
     <h1>
       LUMINA
     </h1>
-    <div class="spinner">
-    </div>
+    <span class="loader"></span>
   </div>
 </div>
 `;

@@ -224,7 +224,7 @@ Route configuration:
 
 Lumina automatically handles undefined routes and displays the 404 page. If a user navigates to a non-existent route, they will be redirected to the designated `NotFoundPage`.
 
-You can customize the 404 page component and styles to match your branding by modifying `NotFoundPage` and its associated styles in `css/notFound.css`.
+You can customize the 404 page component and styles to match your branding by modifying `NotFoundPage` and its associated styles in `assets/css/notFound.css`.
 
 The 404 page ensures a better user experience by informing users that the requested page does not exist, preventing confusion and improving navigation.
 
