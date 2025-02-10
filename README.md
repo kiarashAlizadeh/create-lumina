@@ -7,14 +7,14 @@ Lumina is a lightweight and efficient framework for building full-stack single-p
 To create a new Lumina project, run:
 
 ```bash
-npx create-lumina my-lumina
+npx create-lumina@latest my-lumina
 ```
 
 - `my-lumina` is the folder name where the project will be created.
 - You can omit the folder name and use:
 
   ```sh
-  npx create-lumina
+  npx create-lumina@latest
   ```
 
   This will create a default folder named `my-lumina-app`.
@@ -22,7 +22,7 @@ npx create-lumina my-lumina
 - To install Lumina in the current directory, use:
 
   ```sh
-  npx create-lumina .
+  npx create-lumina@latest .
   ```
 
 ## Usage
