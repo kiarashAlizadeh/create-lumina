@@ -3,10 +3,12 @@ import { API_TOKENS } from '../../lumina.config.js';
 // Token request counter for rate limiting
 const tokenRequests = new Map();
 
-// Reset counters every hour
-setInterval(() => {
+// Reset counters every hour.
+// unref() so the timer never keeps a serverless invocation (Vercel/Lambda) alive.
+const tokenResetTimer = setInterval(() => {
   tokenRequests.clear();
 }, 3600000); // 1 hour
+tokenResetTimer.unref?.();
 
 export const apiTokenAuth = () => (req, res, next) => {
   // Check if the request path starts with /api

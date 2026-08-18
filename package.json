@@ -35,7 +35,8 @@
     "LICENSE",
     "lumina.config.js",
     "README.md",
-    "routes.js"
+    "routes.js",
+    "vercel.json"
   ],
   "dependencies": {
     "cookie-parser": "^1.4.7",

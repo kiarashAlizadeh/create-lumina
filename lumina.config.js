@@ -1,20 +1,33 @@
 import mongoose from 'mongoose';
 
+// Cache the connection promise so that serverless cold starts (Vercel, Lambda)
+// reuse a single Mongoose connection instead of opening one per invocation.
+let connectionPromise = null;
+
 async function DBConnect() {
-  try {
-    const DATABASE_URL = process.env.DATABASE_URL;
-    if (!DATABASE_URL) {
-      console.error('DATABASE_URL is not defined in .env file');
-      return;
-    }
-
-    // Connecting to the database
-    await mongoose.connect(DATABASE_URL);
-
-    console.log('Successfully connected to the Database!');
-  } catch (error) {
-    console.error('Failed to connect to the Database:', error);
+  const DATABASE_URL = process.env.DATABASE_URL;
+  if (!DATABASE_URL) {
+    console.error('DATABASE_URL is not defined in .env file');
+    return null;
   }
+
+  if (connectionPromise) {
+    return connectionPromise;
+  }
+
+  connectionPromise = mongoose
+    .connect(DATABASE_URL)
+    .then((connection) => {
+      console.log('Successfully connected to the Database!');
+      return connection;
+    })
+    .catch((error) => {
+      console.error('Failed to connect to the Database:', error);
+      connectionPromise = null; // allow a retry on the next call
+      return null;
+    });
+
+  return connectionPromise;
 }
 
 // lumina port
