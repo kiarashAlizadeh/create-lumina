@@ -10,6 +10,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// Detect serverless platforms (Vercel), where we export the app instead of listening
+const isServerless = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+
 // Get the directory path of the current file
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -22,7 +25,7 @@ DBConnect();
 // Enable CORS (Cross-Origin Resource Sharing) with credentials, allowing requests from frontend
 app.use(
   cors({
-    origin: `http://localhost:${port}`, // Frontend origin
+    origin: isServerless ? true : `http://localhost:${port}`, // Frontend origin
     credentials: true,
   })
 );
@@ -39,19 +42,22 @@ await loadMiddlewares(app);
 app.use(express.static(__dirname)); // Serve static files from the root of the project
 
 // Dynamically load routes for API under /api/
+// Awaited so the routes are registered before the first request is handled,
+// which matters on serverless platforms where the module is loaded per cold start.
 const routePath = path.join(__dirname, 'api', 'routes');
-fs.readdirSync(routePath).forEach((file) => {
-  if (file.endsWith('.js')) {
+const routeFiles = fs.readdirSync(routePath).filter((file) => file.endsWith('.js'));
+
+await Promise.all(
+  routeFiles.map(async (file) => {
     const endpoint = file.split('.')[0]; // Extract the endpoint from the file name
-    import(`./api/routes/${file}`)
-      .then((route) => {
-        app.use(`/api/${endpoint}`, route.default); // Register the route dynamically
-      })
-      .catch((error) => {
-        console.error(`Failed to load route: ${file}`, error);
-      });
-  }
-});
+    try {
+      const route = await import(`./api/routes/${file}`);
+      app.use(`/api/${endpoint}`, route.default); // Register the route dynamically
+    } catch (error) {
+      console.error(`Failed to load route: ${file}`, error);
+    }
+  })
+);
 
 // Fallback route for all non-API requests (serve index.html)
 app.get('*', (req, res, next) => {
@@ -64,9 +70,14 @@ app.get('*', (req, res, next) => {
   }
 });
 
-// Start WebService (both frontend and backend on the same port)
-app.listen(port, () => {
-  console.log(
-    `Lumina is running on port ${port} | URL is: http://localhost:${port}/`
-  );
-});
+// Start WebService (both frontend and backend on the same port).
+// On serverless the platform invokes the exported app, so there is nothing to listen on.
+if (!isServerless) {
+  app.listen(port, () => {
+    console.log(
+      `Lumina is running on port ${port} | URL is: http://localhost:${port}/`
+    );
+  });
+}
+
+export default app;

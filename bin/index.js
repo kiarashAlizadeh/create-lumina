@@ -99,6 +99,7 @@ async function copyTemplateFiles() {
     'lumina.config.js',
     'README.md',
     'routes.js',
+    'vercel.json',
   ];
 
   try {
