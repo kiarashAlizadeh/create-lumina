@@ -10,7 +10,7 @@
   "bin": {
     "create-lumina": "bin/index.js"
   },
-  "homepage": "https://github.com/kiarashAlizadeh/create-lumina",
+  "homepage": "https://create-lumina.vercel.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kiarashAlizadeh/create-lumina.git"
